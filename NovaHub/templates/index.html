@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+      {% if files %}
+        <h5>My files</h5>
+        {{count}} files | <span class="text-primary">{{total_space_used.0}} {{total_space_used.1}}</span> Used
+        <p></p>
+        <div class="row">
+            {% for file in files %}
+                <div class="col-md-2">
+                    <p>
+                    <figure class="figure figure-hover text-center">
+
+                        <div class="dropdown dropright">
+                          <a href="#" id="imageDropdown" data-toggle="dropdown" class="imgg">
+                            <img src="{% static 'images/buttons/dots.png' %}" height="25px" width="25px">
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+                              <a class="dropdown-item drop-down-font" href="#">Size:<b> {{file.get_unit_size.0}} {{file.get_unit_size.1}}</b></a>
+                              <a class="dropdown-item drop-down-font" href="#">Type:<b> {{file.content_type}}</b></a>
+
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{file.get_sas_url}}" download="{{file.name}}">
+                                    <img src="{% static 'images/buttons/open.png' %}" height="30px" width="30px"> Open
+                                </a>
+
+                                <a class="dropdown-item">
+                                    <form method="post" action="{% url 'core:delete' file.id %}">
+                                        {% csrf_token %}
+                                        <input onclick="return confirm('Are you sure you want to delete this file?')" type="image" name="submit" class="delete-image" src="{% static 'images/buttons/delete.png' %}" height="23px" width="25px">
+                                        <input type="submit" class="delete-button" value="Delete" onclick="return confirm('Are you sure you want to delete this file?')">
+                                    </form>
+
+                                </a>
+
+                            </div>
+                        </div>
+
+                        {% if file.return_type == "image" %}
+                            <img class="figure-img img-fluid box-shadow fade-out" src="{% static 'images/file_icons/image.png' %}" height="100px" width="75px"><br>
+                        {% elif file.return_type == "audio" %}
+                            <img class="figure-img img-fluid box-shadow fade-out" src="{% static 'images/file_icons/audio.png' %}" height="100px" width="75px"><br>
+                        {% elif file.return_type == "video" %}
+                            <img class="figure-img img-fluid box-shadow fade-out" src="{% static 'images/file_icons/video.png' %}" height="100px" width="75px"><br>
+                        {% elif file.return_type == "document" %}
+                            <img class="figure-img img-fluid box-shadow fade-out" src="{% static 'images/file_icons/document.png' %}" height="100px" width="75px"><br>
+                        {% elif file.return_type == "archive" %}
+                            <img class="figure-img img-fluid box-shadow fade-out" src="{% static 'images/file_icons/archive.png' %}" height="100px" width="75px"><br>
+                        {% else %}
+                            <img class="figure-img img-fluid box-shadow fade-out" src="{% static 'images/file_icons/generic.png' %}" height="100px" width="75px"><br>
+                        {% endif %}
+
+                        <div class="text-center">
+
+                            <div class="cut-text">
+                                {{file.uploaded_file.name}} <br>
+                            </div>
+
+                            <figcaption class="figure-caption">
+                                <span class="blog-post-meta blog-post-meta-size">{{file.date_uploaded|date:'M d, Y'}}</span><br>
+                            </figcaption>
+
+                        </div>
+
+                    </figure>
+                    </p>
+                </div>
+
+            {% endfor %}
+        </div>
+      {% else %}
+        <p>No files uploaded yet. <a href="{% url 'upload' %}">Click</a> here to upload your files.</p>
+      {% endif %}
+
+    {% else %}
+      <p>Sign up today!</p>
+    {% endif %}
+
+
+{% endblock %}

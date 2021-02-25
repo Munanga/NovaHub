@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Logout{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h4>You have been logged out :(</h4>
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    Log in again <a href="{% url 'login' %}">Sign in</a>
+                </small>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

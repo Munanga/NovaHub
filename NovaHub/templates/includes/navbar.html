@@ -1,0 +1,60 @@
+{% load static %}
+<header class="site-header">
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand mr-2 " href="{% url 'core:index' %}">NovaHub</a>
+    <div class="navbar-nav col-4">
+      {% if user.is_authenticated %}
+
+        <a class="nav-item nav-link" href="{% url 'upload' %}">
+            <img src="{% static 'images/buttons/upload2.png' %}" height="30px" width="30px">
+            Upload
+        </a>
+      {% endif %}
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarToggle">
+
+      <!-- Search bar -->
+      <div class="col-10 text-center">
+        <div class="nav-item">
+          <form method="get" action="{% url 'search' %}" class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Navbar Right Side -->
+      <div class="navbar-nav">
+
+        {% if user.is_authenticated %}
+
+          <div class="dropdown">
+            <div class="btn btn-secondary dropdown-toggle bg-dark"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{user.username}} <img src="{% static 'images/profile/profile.png' %}" >
+            </div>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+            </div>
+          </div>
+
+        {% endif %}
+
+      </div>
+    </div>
+</nav>
+</header>
+
+{% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+{% endif %}
+

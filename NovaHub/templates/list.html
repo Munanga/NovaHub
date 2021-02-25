@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% for file in files %}
+    <p>
+    ID: {{file.id}} <br>
+    Name: {{file.uploaded_file.name}} <br>
+    URL: {{file.uploaded_file.url}} <br>
+    Size: {{file.uploaded_file.size}} <br>
+    Type: {{file.content_type}} <br>
+    Date Uploaded: {{file.date_uploaded}}<br>
+    Last update: {{file.updated_at| timesince }} ago <br>
+    <a href="{{file.get_sas_url}}" download>Download</a>
+
+
+    </p>
+{% endfor %}
+
+</body>
+</html>

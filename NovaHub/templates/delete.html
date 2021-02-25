@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+
+
+
+{% if file.id %}
+    <p>{{file}}</p>
+    <form method="post" enctype="multipart/form-data" action="{% url 'core:delete' file.id %}">
+        {% csrf_token %}
+
+        <button onclick="return confirm('Are you sure you want to this file?')" type="submit">Delete</button>
+    </form>
+{% endif %}
+
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+asgiref @ file:///tmp/build/80754af9/asgiref_1605055780383/work
+certifi==2020.12.5
+Django @ file:///tmp/build/80754af9/django_1606860386887/work
+django-debug-toolbar @ file:///home/conda/feedstock_root/build_artifacts/django-debug-toolbar_1606988325352/work
+django-storages==1.8
+olefile==0.46
+Pillow @ file:///C:/ci/pillow_1607027481264/work
+psycopg2 @ file:///C:/ci/psycopg2_1608147654043/work
+pytz @ file:///tmp/build/80754af9/pytz_1608922264688/work
+sqlparse @ file:///tmp/build/80754af9/sqlparse_1602184451250/work
+wincertstore==0.2
