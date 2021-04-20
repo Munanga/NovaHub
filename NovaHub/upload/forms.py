@@ -8,9 +8,9 @@ class FileForm(forms.ModelForm):
     class Meta:
         model = File
         fields = ('uploaded_file',)
-        widgets = {
-            'uploaded_file': ClearableFileInput(attrs={'multiple': True}),
-        }
+#         widgets = {
+#             'uploaded_file': ClearableFileInput(attrs={'multiple': True}),
+#         }
 
     # def __init__(self, *args, **kwargs):
     #     super(FileForm, self).__init__(*args, **kwargs)
