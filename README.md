@@ -1,5 +1,5 @@
 # NovaHub
-A cloud storage web app using an Azure Storage Account
+A Full Stack Cloud Sorage Web App using an Azure Storage Account
 
 ![alt text](https://github.com/Munanga/NovaHub/blob/main/NovaHub/screenshots/homepage.PNG) 
 
